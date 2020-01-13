@@ -24,6 +24,7 @@ class SysFSW1Therm:
         async with open(self.rel_path("w1_master_slaves")) as fp:
             self.slaves = [s.strip() for s in await fp.readlines()
                            if s[:2].lower() in self.family_codes]
+        return self.slaves
 
     async def read_slave(self, slave_name):
         logging.debug("read_slave: %s", slave_name)
